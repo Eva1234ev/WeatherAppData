@@ -172,38 +172,6 @@
             endingLineNumber = "40"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "76F79F47-E0EE-46EF-8B4A-3BBB41635891 - 185b77116b1470a8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherAppData.LocationService.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "WeatherAppData"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eva/Desktop/WeatherAppData/WeatherAppData/LocationService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "63">
-               </Location>
-               <Location
-                  uuid = "76F79F47-E0EE-46EF-8B4A-3BBB41635891 - c9f237267b3bcf44"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.CLLocation, __C.CLLocation) -&gt; Swift.Bool in WeatherAppData.LocationService.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "WeatherAppData"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eva/Desktop/WeatherAppData/WeatherAppData/LocationService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "94">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

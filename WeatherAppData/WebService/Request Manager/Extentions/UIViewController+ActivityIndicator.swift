@@ -1,10 +1,9 @@
 //
 //  UIViewController.swift
-//  Mealo
+//  WeatherAppData
 //
-//  Created by ArtS on 1/21/19.
-//  Copyright © 2019 Mealo. All rights reserved.
-//
+//  Created by Eva on 9/29/19.
+//  Copyright © 2019 Eva. All rights reserved.
 
 import UIKit
 
@@ -37,7 +36,6 @@ extension UIViewController {
         overlay.tag = overlayViewTag
         
         //configure activity indicator
-
         let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.sizeToFit()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

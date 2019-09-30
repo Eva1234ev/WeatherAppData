@@ -22,6 +22,7 @@ class WeatherReuseView: UIView {
     @IBOutlet var pressureLabel:UILabel!;
     @IBOutlet weak var weatherImageView: UIImageView!
     private var model : CurrentSingleWeatherModel?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -52,18 +53,12 @@ class WeatherReuseView: UIView {
         }) { (error) in
             print(error)
         }
-        //        APIClient.sharedInstance.fetchDictionaryDataWithGetRequest(requestUrl: requestURL, parameters: [:], headers: [:]) { (error, weather) in
-        //            if error != nil {
-        //                print("Error")
-        //                return
-        //            }
-        //            self.setWeatherData(weather: weather! as NSDictionary)
-        //        }
     }
     func setWeatherData(weather: CurrentSingleWeatherModel?) {
         self.temperatureLabel.text =  Utils.getTemperatureInCelcius(kelvin: (weather?.main.temp)!) + "°" ;
         self.pressureLabel?.text = "Pressure (Atmsp.) - " + String((weather?.main.pressure)!) + " mbar"
         self.humidityLabel?.text = "Humidity - " + String(Int((weather?.main.humidity)!)) + "%"
+        
         if let speed = weather?.wind.speed {
             self.windSpeedLabel?.text = "Wind Speed - " + String(speed) + " km/h"
         }
@@ -76,11 +71,13 @@ class WeatherReuseView: UIView {
         else{
             self.cloudsLabel?.text = "Cloud -  0%"
         }
+        
         self.countryLabel?.text = weather?.name
         let urlImage = "https://openweathermap.org/img/w/" + (weather?.weather[0].icon)! + ".png"
         self.weatherImageView.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(systemName: "person.crop.circle"))
         self.descriptionLabel?.text = (weather?.weather[0].weatherDescription)!
     }
+    
     
     func toTextualDescription(degree:Double)->String{
         if(degree>337.5){ return "Northerly"}
@@ -93,46 +90,6 @@ class WeatherReuseView: UIView {
         if(degree>22.5) {return "North Easterly"}
         return "Northerly";
     }
-    //func setWeatherData(weather: NSDictionary) {
-    
-    //        if let main = weather["main"] as? [String: Any] {
-    //            if let kelvinTemp = main["temp"] as? Double {
-    //                self.temperatureLabel.text =  Utils.getTemperatureInCelcius(kelvin: kelvinTemp) + "°" ;
-    //            }
-    //            if let pressure = main["pressure"] as? Double {
-    //                self.pressureLabel?.text = "Pressure (Atmsp.) - " + String(Int(pressure))
-    //            }
-    //            if let humidity = main["humidity"] as? Double {
-    //                self.humidityLabel?.text = "Humidity - " + String(Int(humidity)) + "%"
-    //            }
-    //
-    //        }
-    //        if let wind = weather["wind"] as? [String:Any]{
-    //            if let speed = wind["speed"] as? Double {
-    //                self.windSpeedLabel?.text = "Wind Speed - " + String(Int(speed))
-    //            }
-    //            if let deg = wind["deg"] as? Double {
-    //                self.windDirection?.text = "Wind Direction - " + String(Int(deg)) + " km/h"
-    //            }
-    //        }
-    //        if let cloud = weather["clouds"] as? [String:Any]{
-    //                   if let all = cloud["all"] as? Int {
-    //                    self.cloudsLabel?.text = "Cloud - " + String(all) + "%"
-    //                   }
-    //               }
-    //        if let name = weather["name"] as? String {
-    //            self.countryLabel?.text = name
-    //        }
-    //
-    //        if let weatherArr = weather["weather"] as? [[String: Any]] {
-    //            if weatherArr.count > 0 {
-    //                let weatherObj = Weather(json: weatherArr[0])
-    //                let urlImage = "https://openweathermap.org/img/w/" + weatherObj.icon! + ".png"
-    //                self.weatherImageView.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(systemName: "person.crop.circle"))
-    //                self.descriptionLabel?.text = weatherObj.descriptionText
-    //            }
-    //        }
-    //    }
     
 }
 

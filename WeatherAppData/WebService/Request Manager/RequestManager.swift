@@ -12,24 +12,6 @@ final class RequestManager: NSObject {
 
 
     static func getCurrentWeather(url: String, completionHandler: @escaping CompletionHandler<CurrentSingleWeatherModel>, errorHandler: @escaping ErrorHandler) {
-//        guard let requrl = URL(string:url) else {
-//            
-//            var string = url
-//            string = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-//             let Requrl = URL(string: string)
-//           return
-//       }
-//        url.stringB
-//        var urlStr : NSString = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-//        var searchURL : NSURL = NSURL(string: urlStr as String)!
-//        print(searchURL)
-//        let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))! as NSString
-//        let searchURL : NSURL = NSURL(string: urlStr as String)!
-//        print(searchURL)
-//
-//        let requestUrl = URLRequest(url: url)
-//       webView?.loadRequest(request)
-//        let requestUrl = URL(string: url)
          var string = url
          string = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
          let requrl = URL(string: string)
@@ -42,10 +24,7 @@ final class RequestManager: NSObject {
                }
                .resume()
        }
-//        let requestUrl = URL(string: url)!
-       
 
-  
     
   static func getCurrentWeatherByWeek(url: String, completionHandler: @escaping CompletionHandler<CurrentWeakWeatherModel>, errorHandler: @escaping ErrorHandler) {
             let requestUrl = URL(string: url)!

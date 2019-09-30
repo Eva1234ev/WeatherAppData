@@ -36,7 +36,6 @@
 		A6F6C2F4233D1D8E000423B9 /* WeatherAppDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C2F3233D1D8E000423B9 /* WeatherAppDataTests.swift */; };
 		A6F6C2FF233D1D8E000423B9 /* WeatherAppDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C2FE233D1D8E000423B9 /* WeatherAppDataUITests.swift */; };
 		A6F6C30D233DA9CD000423B9 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C30C233DA9CD000423B9 /* CurrentWeatherViewController.swift */; };
-		A6F6C30F233DB085000423B9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C30E233DB085000423B9 /* LocationService.swift */; };
 		A6F6C311233DB160000423B9 /* CountriesWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C310233DB160000423B9 /* CountriesWeatherViewController.swift */; };
 		A6F6C314233DB8AD000423B9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F6C313233DB8AD000423B9 /* Configuration.swift */; };
 /* End PBXBuildFile section */
@@ -96,7 +95,6 @@
 		A6F6C2FE233D1D8E000423B9 /* WeatherAppDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppDataUITests.swift; sourceTree = "<group>"; };
 		A6F6C300233D1D8E000423B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F6C30C233DA9CD000423B9 /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
-		A6F6C30E233DB085000423B9 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		A6F6C310233DB160000423B9 /* CountriesWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesWeatherViewController.swift; sourceTree = "<group>"; };
 		A6F6C313233DB8AD000423B9 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		AD3F816007CB93EEF60D0C81 /* Pods-WeatherAppDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppDataTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAppDataTests/Pods-WeatherAppDataTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,10 +205,10 @@
 			isa = PBXGroup;
 			children = (
 				A61569F7234103DB00D3E392 /* ResponseModel.swift */,
-				A6CE02EB233F4448002A4B00 /* Countrie.swift */,
 				A61569E52340F4BA00D3E392 /* CurrentSingleWeatherModel.swift */,
 				A61569E72340F51300D3E392 /* CurrentWeakWeatherModel.swift */,
 				A61569F923415CEB00D3E392 /* CountryData.swift */,
+				A6CE02EB233F4448002A4B00 /* Countrie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,7 +251,6 @@
 				A6F6C2E7233D1D8E000423B9 /* LaunchScreen.storyboard */,
 				A6F6C2EA233D1D8E000423B9 /* Info.plist */,
 				A6F6C2E2233D1D8D000423B9 /* WeatherAppData.xcdatamodeld */,
-				A6F6C30E233DB085000423B9 /* LocationService.swift */,
 			);
 			path = WeatherAppData;
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				A61569F12340FCD000D3E392 /* Encodable.swift in Sources */,
 				A6F6C2E4233D1D8D000423B9 /* WeatherAppData.xcdatamodeld in Sources */,
 				A6F6C311233DB160000423B9 /* CountriesWeatherViewController.swift in Sources */,
-				A6F6C30F233DB085000423B9 /* LocationService.swift in Sources */,
 				A6CE02EC233F4448002A4B00 /* Countrie.swift in Sources */,
 				A61569F42340FD0600D3E392 /* NetworkActivityIndicatorManager.swift in Sources */,
 				A61569F22340FCD000D3E392 /* URLSession.swift in Sources */,

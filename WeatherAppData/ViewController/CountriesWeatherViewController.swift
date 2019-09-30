@@ -21,19 +21,19 @@ class CountriesWeatherViewController: UIViewController {
     private var collectionView: UICollectionView! = nil
     private var reuseView = WeatherReuseView()
     private var countryData = [Country]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createData()
-        //configureHierarchy()
-        // configureDataSource()
     }
 }
 
 extension CountriesWeatherViewController {
     
     private func createData() {
-        
+        displayActivityIndicator(shouldDisplay: true)
         RequestManager.getAllcountries(url: Config.kAllCountriesAPI, completionHandler: { (data) in
+            self.displayActivityIndicator(shouldDisplay: false)
             self.countryData = data
             for code in self.countryData  {
                 
@@ -42,6 +42,7 @@ extension CountriesWeatherViewController {
             self.configureHierarchy()
             self.configureDataSource()
         }) { (error) in
+            self.displayActivityIndicator(shouldDisplay: false)
             print(error)
         }
     }
@@ -105,11 +106,12 @@ extension CountriesWeatherViewController: UICollectionViewDelegate  {
         let url = "q=" + "\(String(describing:country.capital))" + "\(String(","))" +  "\(String(describing:country.name))"
         
         self.reuseView.updateCurrentWeather(urlLocation : url)
+        
         self.reuseView.layer.cornerRadius =  0
         self.reuseView.layer.masksToBounds = true
         
         _ = AlertViewBuilder() { (builder) in
-            self.reuseView.contentView.backgroundColor = .black
+            self.reuseView.contentView.backgroundColor = UIColor(red:0.29, green:0.42, blue:0.51, alpha:1.0)
             builder.addView(with: self.reuseView, tag: 0, height: 300)
             builder.addButton(with: "OK", backgroundColor: .white, titleColor: .black, font: UIFont.systemFont(ofSize: 15), height: 40, action: {
                 
