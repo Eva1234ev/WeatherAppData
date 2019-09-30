@@ -1,0 +1,45 @@
+PODS:
+  - Alamofire (4.9.0)
+  - AlertViewBuilder (0.1.9)
+  - CocoaLumberjack (3.5.3):
+    - CocoaLumberjack/Core (= 3.5.3)
+  - CocoaLumberjack/Core (3.5.3)
+  - SDWebImage (5.2.0):
+    - SDWebImage/Core (= 5.2.0)
+  - SDWebImage/Core (5.2.0)
+  - SDWebImageSVGCoder (0.3.0):
+    - SDWebImage/Core (~> 5.0)
+    - SVGKit (>= 2.1)
+  - SKCountryPicker (1.2.6)
+  - SVGKit (2.1.1):
+    - CocoaLumberjack (~> 3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlertViewBuilder
+  - SDWebImage
+  - SDWebImageSVGCoder
+  - SKCountryPicker
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlertViewBuilder
+    - CocoaLumberjack
+    - SDWebImage
+    - SDWebImageSVGCoder
+    - SKCountryPicker
+    - SVGKit
+
+SPEC CHECKSUMS:
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  AlertViewBuilder: 9c000d07486fb6bc06dd239a1752d1bbfbb3cabb
+  CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  SDWebImage: 609192dcf3898c910a2848032372ead951e66364
+  SDWebImageSVGCoder: 4b354bcdc7d74ce14d9fdb3c9ed9ab2c667f3b57
+  SKCountryPicker: 7d9bb316dd4acdf0e5a59d275f84fef02a088e46
+  SVGKit: 652cdf7bef8bec8564d04a8511d3ab50c7595fac
+
+PODFILE CHECKSUM: 14ca15461de53a0fc587a9c48f9bda627d249484
+
+COCOAPODS: 1.7.2
