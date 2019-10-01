@@ -35,16 +35,21 @@ extension CountriesWeatherViewController {
         displayActivityIndicator(shouldDisplay: true)
         RequestManager.getAllcountries(url: Config.kAllCountriesAPI, completionHandler: { (data) in
             self.displayActivityIndicator(shouldDisplay: false)
-            self.countryData = data
-            for code in self.countryData  {
-                
-                self.country.append(Countrie(name:code.name, capital: code.capital, image: code.flag))
+            DispatchQueue.main.async {
+                self.countryData = data
+                for code in self.countryData  {
+                    
+                    self.country.append(Countrie(name:code.name, capital: code.capital, image: code.flag))
+                }
+                self.configureHierarchy()
+                self.configureDataSource()
             }
-            self.configureHierarchy()
-            self.configureDataSource()
+            
         }) { (error) in
+            DispatchQueue.main.async {
             self.displayActivityIndicator(shouldDisplay: false)
             print(error)
+            }
         }
     }
     
