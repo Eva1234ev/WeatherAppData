@@ -8,11 +8,11 @@ struct CurrentSingleWeatherModel: Codable {
     let weather: [Weather]
     let base: String
     let main: Main
-    let visibility: Int
+    let visibility: Int?
     let wind: Wind
     let clouds: Clouds
     let dt: Int
-    let sys: Sys
+    let sys: Sys?
     let timezone, id: Int
     let name: String
     let cod: Int
@@ -43,10 +43,10 @@ struct Main: Codable {
 
 // MARK: - Sys
 struct Sys: Codable {
-    let type, id: Int
+    let type, id: Int?
     let message: Double
     let country: String
-    let sunrise, sunset: Int
+    let sunrise, sunset: Int?
 }
 
 // MARK: - Weather

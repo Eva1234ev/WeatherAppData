@@ -24,17 +24,11 @@ extension URLSession {
         if let httpMethod = httpMethod {
             request.httpMethod = httpMethod.rawValue
         }
-       // request.addValue("1.0", forHTTPHeaderField: "Yungo-Version")
-       // request.addValue(AppManager.appBundleVersion, forHTTPHeaderField: "Yungo-App-Version")
         if let body = body {
             request.httpBody = body.toJSONData()
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json-patch+json", forHTTPHeaderField: "Content-Type")
         }
-//        if let token = token {
-//            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//        }
-//
       //  NetworkActivityIndicatorManager.networkOperationStarted()
         return self.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {

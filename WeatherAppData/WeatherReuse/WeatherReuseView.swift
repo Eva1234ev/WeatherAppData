@@ -22,12 +22,11 @@ class WeatherReuseView: UIView {
     @IBOutlet var pressureLabel:UILabel!;
     @IBOutlet weak var weatherImageView: UIImageView!
     private var model : CurrentSingleWeatherModel?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -42,18 +41,7 @@ class WeatherReuseView: UIView {
         self.layer.cornerRadius = 20;
         self.layer.masksToBounds = true
     }
-    func updateCurrentWeather(urlLocation : String) {
-        
-        let requestURL = Config.kCurrentWeatherAPI + urlLocation + Config.kWeatherAPIKey
-       
-        RequestManager.getCurrentWeather(url: requestURL, completionHandler: { (data) in
-            self.model = data
-            self.setWeatherData(weather: self.model)
-           
-        }) { (error) in
-            print(error)
-        }
-    }
+
     func setWeatherData(weather: CurrentSingleWeatherModel?) {
         self.temperatureLabel.text =  Utils.getTemperatureInCelcius(kelvin: (weather?.main.temp)!) + "°" ;
         self.pressureLabel?.text = "Pressure (Atmsp.) - " + String((weather?.main.pressure)!) + " mbar"

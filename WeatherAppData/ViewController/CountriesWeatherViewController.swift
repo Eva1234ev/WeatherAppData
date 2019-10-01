@@ -21,6 +21,7 @@ class CountriesWeatherViewController: UIViewController {
     private var collectionView: UICollectionView! = nil
     private var reuseView = WeatherReuseView()
     private var countryData = [Country]()
+    private var model : CurrentSingleWeatherModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,20 +104,39 @@ extension CountriesWeatherViewController: UICollectionViewDelegate  {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let country = dataSource.itemIdentifier(for: indexPath) else { return }
         
-        let url = "q=" + "\(String(describing:country.capital))" + "\(String(","))" +  "\(String(describing:country.name))"
+        var url = "q=" //+ "\(String(describing:country.capital))" + "\(String(","))" +  "\(String(describing:country.name))"
         
-        self.reuseView.updateCurrentWeather(urlLocation : url)
+        if  !country.capital.isEmpty {
+            url =  Config.kCurrentWeatherAPI + url + "\(String(describing:country.capital))" + "\(String(","))" +  "\(String(describing:country.name))" + Config.kWeatherAPIKey
+        }else{
+            url = Config.kCurrentWeatherAPI + url + "\(String(describing:country.name))" + Config.kWeatherAPIKey
+        }
         
-        self.reuseView.layer.cornerRadius =  0
-        self.reuseView.layer.masksToBounds = true
-        
-        _ = AlertViewBuilder() { (builder) in
-            self.reuseView.contentView.backgroundColor = UIColor(red:0.29, green:0.42, blue:0.51, alpha:1.0)
-            builder.addView(with: self.reuseView, tag: 0, height: 300)
-            builder.addButton(with: "OK", backgroundColor: .white, titleColor: .black, font: UIFont.systemFont(ofSize: 15), height: 40, action: {
+        RequestManager.getCurrentWeather(url: url, completionHandler: { (data) in
+            self.model = data
+            self.reuseView.contentMode = .scaleAspectFill
+            self.reuseView.clipsToBounds = true
+            self.reuseView.layer.cornerRadius =  0
+            self.reuseView.layer.masksToBounds = true
+            self.reuseView.setWeatherData(weather: self.model)
+            _ = AlertViewBuilder() { (builder) in
+                self.reuseView.contentView.backgroundColor = UIColor(red:0.29, green:0.42, blue:0.51, alpha:1.0)
+                builder.addView(with: self.reuseView, tag: 0, height: 300)
+                builder.addButton(with: "OK", backgroundColor: .white, titleColor: .black, font: UIFont.systemFont(ofSize: 15), height: 40, action: {
+                    
+                })
+            }.build()
+        }) {
+            (error) in
+            let alertController = UIAlertController(title: "CAN NOT FIND!", message: "", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) {
+                UIAlertAction in
                 
-            })
-        }.build()
+            }
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         
     }
 }

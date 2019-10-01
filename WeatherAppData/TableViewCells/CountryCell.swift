@@ -31,11 +31,15 @@ extension UIView {
 }
 
 class CountryCell: UICollectionViewCell  {
-
+    
     var country: Countrie? {
         didSet {
-            nameLbl.text = country!.capital + ", " + country!.name
             
+            if  !country!.capital.isEmpty {
+                nameLbl.text = country!.capital + ", " + country!.name
+            }else{
+                nameLbl.text = country!.name
+            }
             countryImage.layer.cornerRadius = countryImage.frame.height/2
             countryImage.layer.masksToBounds = true
             let SVGCoder = SDImageSVGCoder.shared
@@ -43,7 +47,7 @@ class CountryCell: UICollectionViewCell  {
             countryImage.sd_setImage(with:   URL(string: country!.image))
             let SVGImageSize = CGSize(width: 100, height: 100)
             countryImage.sd_setImage(with:  URL(string: country!.image), placeholderImage: nil, options: [], context: [.svgImageSize : SVGImageSize])
-          
+            
         }
     }
     
@@ -80,7 +84,7 @@ class CountryCell: UICollectionViewCell  {
         
         self.backgroundView?.addSubview(countryImage)
         self.backgroundView?.addSubview(nameLbl)
-
+        
         NSLayoutConstraint.activate([
             countryImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             countryImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -91,7 +95,7 @@ class CountryCell: UICollectionViewCell  {
             nameLbl.leadingAnchor.constraint(equalTo: countryImage.trailingAnchor, constant: 16),
             nameLbl.widthAnchor.constraint(equalToConstant: 250),
             nameLbl.heightAnchor.constraint(equalToConstant: 50),
-
+            
         ])
         
     }
@@ -102,7 +106,7 @@ class CountryCell: UICollectionViewCell  {
             
             var transform = CGAffineTransform.identity
             if isHighlighted {
-               transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
             }
             
             UIView.animate(withDuration: 0.9, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .curveEaseOut, animations: {
@@ -112,20 +116,20 @@ class CountryCell: UICollectionViewCell  {
     }
     
     func setupCardCellShadow() {
-         backgroundView = UIView()
-         addSubview(backgroundView!)
-         backgroundView?.fillSuperview()
-         backgroundView?.backgroundColor  = UIColor(red:0.87, green:0.91, blue:0.95, alpha:1.0)
-         backgroundView?.layer.cornerRadius  = 26
-         backgroundView?.layer.shadowOpacity = 0.1
-         backgroundView?.layer.shadowOffset  = .init(width: 4, height: 10)
-         backgroundView?.layer.shadowRadius  = 10
-
-         layer.borderColor  = UIColor.blue.cgColor
-         layer.borderWidth  = 1
-         layer.cornerRadius = 26
-         self.layoutIfNeeded()
-     }
+        backgroundView = UIView()
+        addSubview(backgroundView!)
+        backgroundView?.fillSuperview()
+        backgroundView?.backgroundColor  = UIColor(red:0.87, green:0.91, blue:0.95, alpha:1.0)
+        backgroundView?.layer.cornerRadius  = 26
+        backgroundView?.layer.shadowOpacity = 0.1
+        backgroundView?.layer.shadowOffset  = .init(width: 4, height: 10)
+        backgroundView?.layer.shadowRadius  = 10
+        
+        layer.borderColor  = UIColor.blue.cgColor
+        layer.borderWidth  = 1
+        layer.cornerRadius = 26
+        self.layoutIfNeeded()
+    }
     
 }
 

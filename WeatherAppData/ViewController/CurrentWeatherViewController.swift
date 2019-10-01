@@ -17,18 +17,19 @@ class CurrentWeatherViewController: UIViewController  {
     private var reuseView = WeatherReuseView()
     private var weatherModel : CurrentWeakWeatherModel?
     
+    
+    private var model : CurrentSingleWeatherModel?
     override func viewDidLoad() {
         super.viewDidLoad()        
         
         locManager.delegate = self
         locManager.requestAlwaysAuthorization()
-        
         self.reuseView = WeatherReuseView()
         self.reuseView.frame = CGRect(x: 20, y: 20, width: UIScreen.main.bounds.size.width-40, height: 300)
         
         self.reuseView.contentMode = .scaleAspectFill
         self.reuseView.clipsToBounds = true
-        self.view.addSubview(self.reuseView)
+        
         
         tableView.estimatedRowHeight = 50
         tableView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
@@ -41,29 +42,51 @@ class CurrentWeatherViewController: UIViewController  {
         
     }
     
-    private func createUrl()->String{
+    
+    private func downloadDetails(){
         
         let latitude = "lat=" + "\(String(describing: locManager.location!.coordinate.latitude))"
         let longitude = "&lon=" + "\(String(describing: locManager.location!.coordinate.longitude))"
+        let locationWeatherUrl = latitude + longitude + Config.kWeatherAPIKey
         
-        return latitude + longitude
-    }
-    
-    
-    func getWeatherForecast() {
+        let dispatchGroup = DispatchGroup()
+        self.displayActivityIndicator(shouldDisplay: true)
         
-        displayActivityIndicator(shouldDisplay: true)        
-        let requestURL = Config.kForecastAPI + self.createUrl() + Config.kWeatherAPIKey
-        RequestManager.getCurrentWeatherByWeek(url: requestURL, completionHandler: { (data) in
-            self.displayActivityIndicator(shouldDisplay: false)
-            self.weatherModel = data
-            self.forecastArray = self.weatherModel!.list
-            self.reloadTableView()
+        dispatchGroup.enter()
+        RequestManager.getCurrentWeatherByWeek(url: Config.kForecastAPI + locationWeatherUrl, completionHandler: { (data) in
+            DispatchQueue.main.async {
+                
+                self.weatherModel = data
+                self.forecastArray = self.weatherModel!.list
+                dispatchGroup.leave()
+            }
         }) { (error) in
             self.displayActivityIndicator(shouldDisplay: false)
             print(error)
         }
+        
+        
+        dispatchGroup.enter()
+        RequestManager.getCurrentWeather(url: Config.kCurrentWeatherAPI + locationWeatherUrl, completionHandler: { (data) in
+            DispatchQueue.main.async {
+                
+                self.model = data
+                dispatchGroup.leave()
+            }
+        }) { (error) in
+            print(error)
+            self.displayActivityIndicator(shouldDisplay: false)
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            
+            self.reuseView.setWeatherData(weather: self.model)
+            self.view.addSubview(self.reuseView)
+            self.reloadTableView()
+            self.displayActivityIndicator(shouldDisplay: false)
+        }
     }
+    
     func reloadTableView() {
         DispatchQueue.main.async {
             self.tableView?.reloadData()
@@ -78,8 +101,7 @@ extension CurrentWeatherViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if NetworkHelper.isConnected() {
-            self.reuseView.updateCurrentWeather(urlLocation: self.createUrl())
-            getWeatherForecast()
+            downloadDetails()
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
