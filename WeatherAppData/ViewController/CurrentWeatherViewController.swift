@@ -39,7 +39,9 @@ class CurrentWeatherViewController: UIViewController  {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locManager.startUpdatingLocation()
-        
+        if NetworkHelper.isConnected() {
+            downloadDetails()
+        }
     }
     
     
@@ -100,9 +102,7 @@ extension CurrentWeatherViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if NetworkHelper.isConnected() {
-            downloadDetails()
-        }
+        
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
