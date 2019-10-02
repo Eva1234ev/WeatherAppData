@@ -4,5 +4,4 @@ ${BUILT_PRODUCTS_DIR}/AlertViewBuilder/AlertViewBuilder.framework
 ${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImageSVGCoder/SDWebImageSVGCoder.framework
-${BUILT_PRODUCTS_DIR}/SKCountryPicker/SKCountryPicker.framework
 ${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework

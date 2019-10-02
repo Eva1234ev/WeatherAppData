@@ -40,6 +40,7 @@ class WeatherReuseView: UIView {
         
         self.layer.cornerRadius = 20;
         self.layer.masksToBounds = true
+      
     }
 
     func setWeatherData(weather: CurrentSingleWeatherModel?) {
@@ -63,6 +64,9 @@ class WeatherReuseView: UIView {
         self.countryLabel?.text = weather?.name
         let urlImage = "https://openweathermap.org/img/w/" + (weather?.weather[0].icon)! + ".png"
         self.weatherImageView.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(systemName: "person.crop.circle"))
+        
+        self.descriptionLabel.numberOfLines = 0
+        self.descriptionLabel.sizeToFit()
         self.descriptionLabel?.text = (weather?.weather[0].weatherDescription)!
     }
     

@@ -10,7 +10,6 @@ PODS:
   - SDWebImageSVGCoder (0.3.0):
     - SDWebImage/Core (~> 5.0)
     - SVGKit (>= 2.1)
-  - SKCountryPicker (1.2.6)
   - SVGKit (2.1.1):
     - CocoaLumberjack (~> 3.0)
 
@@ -19,7 +18,6 @@ DEPENDENCIES:
   - AlertViewBuilder
   - SDWebImage
   - SDWebImageSVGCoder
-  - SKCountryPicker
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -28,7 +26,6 @@ SPEC REPOS:
     - CocoaLumberjack
     - SDWebImage
     - SDWebImageSVGCoder
-    - SKCountryPicker
     - SVGKit
 
 SPEC CHECKSUMS:
@@ -37,9 +34,8 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   SDWebImage: 609192dcf3898c910a2848032372ead951e66364
   SDWebImageSVGCoder: 4b354bcdc7d74ce14d9fdb3c9ed9ab2c667f3b57
-  SKCountryPicker: 7d9bb316dd4acdf0e5a59d275f84fef02a088e46
   SVGKit: 652cdf7bef8bec8564d04a8511d3ab50c7595fac
 
-PODFILE CHECKSUM: 14ca15461de53a0fc587a9c48f9bda627d249484
+PODFILE CHECKSUM: 42ed3ecf6fc8cfd699962b8968cf16c7fa625ab2
 
 COCOAPODS: 1.7.2

@@ -7,8 +7,6 @@ target 'WeatherAppData' do
   pod 'Alamofire'
   pod 'SDWebImage'
   pod 'SDWebImageSVGCoder'
-
-  pod 'SKCountryPicker'
   pod 'AlertViewBuilder'
 
   # Pods for WeatherAppData

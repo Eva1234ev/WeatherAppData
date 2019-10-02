@@ -173,6 +173,13 @@
 			path = WeatherReuse;
 			sourceTree = "<group>";
 		};
+		A66E0B3A234479AE002D48BC /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		A6CE02E0233EF685002A4B00 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +299,7 @@
 		A6F6C316233DB95F000423B9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A66E0B3A234479AE002D48BC /* New Group */,
 				A6F6C30C233DA9CD000423B9 /* CurrentWeatherViewController.swift */,
 				A6F6C310233DB160000423B9 /* CountriesWeatherViewController.swift */,
 			);
