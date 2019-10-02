@@ -12,18 +12,13 @@ import CoreLocation
 class CurrentWeatherViewController: UIViewController  {
     private var locManager = CLLocationManager()
     @IBOutlet weak var tableView: UITableView!
-    
     private var forecastArray = [List]()
     private var reuseView = WeatherReuseView()
-    private var weatherModel : CurrentWeakWeatherModel?
-    
-    
+    private var weatherModel : CurrentWeakWeatherModel?        
     private var model : CurrentSingleWeatherModel?
     override func viewDidLoad() {
         super.viewDidLoad()        
-        
-        locManager.delegate = self
-        locManager.requestAlwaysAuthorization()
+       
         self.reuseView = WeatherReuseView()
         self.reuseView.frame = CGRect(x: 20, y: 20, width: UIScreen.main.bounds.size.width-40, height: 300)
         
@@ -38,13 +33,20 @@ class CurrentWeatherViewController: UIViewController  {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locManager.startUpdatingLocation()
-        if NetworkHelper.isConnected() {
-            downloadDetails()
-        }
+        self.enableLocationServices()
+        
     }
     
-    
+   private func enableLocationServices() {
+        self.locManager.requestWhenInUseAuthorization()
+        if(CLLocationManager.locationServicesEnabled()){
+            self.locManager.delegate = self
+            self.locManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locManager.startUpdatingLocation()
+        }
+        
+    }
+   
     private func downloadDetails(){
         
         let latitude = "lat=" + "\(String(describing: locManager.location!.coordinate.latitude))"
@@ -101,8 +103,10 @@ class CurrentWeatherViewController: UIViewController  {
 extension CurrentWeatherViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
+        if NetworkHelper.isConnected() {
+            downloadDetails()
+        }
+        self.locManager.stopUpdatingLocation()
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
